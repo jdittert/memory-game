@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/card.css'
+import '../imgs/img1.svg'
 
 export default function Card(props) {
     const {number} = props;
