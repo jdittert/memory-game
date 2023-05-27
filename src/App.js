@@ -4,7 +4,7 @@ import Card from './components/card';
 import './styles/App.css';
 
 const App = () => {
-    const numbers = [1, 2, 3, 4]
+    const [numbers, setNumbers] = useState([1, 2, 3, 4]);
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
     const [clicked, setClicked] = useState([]);
@@ -12,6 +12,7 @@ const App = () => {
     const updateScore = (e) => {
         const {number} = e.target.dataset;
         if (clicked.includes(number)) {
+            shuffleArray();
             setScore(0);
             setClicked([]);
         } else {
@@ -19,16 +20,27 @@ const App = () => {
             if (newScore >= highScore) {
                 setHighScore(newScore);
             }
+            shuffleArray();
             setScore(newScore);
             setClicked(clicked.concat(number));
-        }
-        
+        }        
     }
 
     const resetScore = () => {
         setScore(0);
         setClicked([]);
-    }    
+    }
+
+    const shuffleArray = () => {
+        let unshuffled = [...numbers];
+
+        let shuffled = unshuffled
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
+        
+        setNumbers(shuffled);
+    }
 
     return (
         <div>
@@ -43,6 +55,9 @@ const App = () => {
             </div>
             <div>
                 <button onClick={resetScore}>Reset Score</button>
+            </div>
+            <div>
+                <button onClick={shuffleArray}>Shuffle Array</button>
             </div>
         </div>
     )
