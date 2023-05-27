@@ -10,7 +10,7 @@ export default function Card(props) {
             <button className='card'
             onClick={onClick}
             data-number={number}>
-                {number}
+                <img src={`/imgs/img${number}.svg`} alt={number} data-number={number}/>
             </button>
         </div>
     )

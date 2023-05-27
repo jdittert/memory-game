@@ -28,6 +28,7 @@ const App = () => {
 
     const resetScore = () => {
         setScore(0);
+        setHighScore(0);
         setClicked([]);
     }
 
@@ -43,7 +44,10 @@ const App = () => {
     }
 
     return (
-        <div>
+        <div className='wrapper'>
+            <div className='instructions'>
+                Instructions: Click on a card to score 1 point. If you click on a card twice, your score resets to zero!
+            </div>
             <div><Score score={score} highScore={highScore} /></div>
             <div className='memory-cards'>
                 {numbers.map((number) => {
@@ -54,12 +58,15 @@ const App = () => {
                 )}
             </div>
             <div>
-                <button onClick={resetScore}>Reset Score</button>
+                <div>
+                    These buttons exist just to prove their functionality.
+                </div>
+                <div className='function-buttons'>
+                    <button onClick={resetScore}>Reset All Scores</button>
+                    <button onClick={shuffleArray}>Shuffle Array</button>
+                </div>
             </div>
-            <div>
-                <button onClick={shuffleArray}>Shuffle Array</button>
             </div>
-        </div>
     )
 } 
 
